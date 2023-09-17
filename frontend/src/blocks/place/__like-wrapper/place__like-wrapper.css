@@ -1,0 +1,7 @@
+.place__like-wrapper {
+  width: 22px;
+  height: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

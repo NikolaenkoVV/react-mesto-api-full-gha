@@ -1,0 +1,22 @@
+.place__button-like {
+  width: 22px;
+  height: 19px;
+  border: none;
+  background: none;
+  line-height: 0;
+  padding: 0;
+  align-self: center;
+  outline: none;
+  /* margin: 5px 5px 5px 0; */
+  background-image: url(../../../images/place-like.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.4s;
+}
+
+.place__button-like:hover {
+  cursor: pointer;
+}
+
+

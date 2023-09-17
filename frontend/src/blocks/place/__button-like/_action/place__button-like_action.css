@@ -1,0 +1,7 @@
+.place__button-like_action {
+  background-image: url(../../../../images/place-like-active.svg);
+}
+
+.place__button-like_action:hover {
+  cursor: pointer;
+}
