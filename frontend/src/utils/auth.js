@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3001";
+export const BASE_URL = "http://api.mestokd.students.nomoredomainsrocks.ru:3001";
 
 const checkRequestResponse = (res) => {
   if (res.ok) {
