@@ -97,7 +97,7 @@ function App() {
   };
 
   const handleCardLike = (place) => {
-    const isLiked = place.likes.some((i) => i._id === currentUser._id);
+    const isLiked = place.likes.some((i) => i === currentUser._id);
     const jwt = localStorage.getItem("jwt");
     api
       .changePlaceLikeStatus(place, isLiked, jwt)

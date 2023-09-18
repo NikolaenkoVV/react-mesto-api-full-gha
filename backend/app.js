@@ -10,6 +10,7 @@ const { login, createUser } = require('./controllers/users');
 
 const { regexLink } = require('./utils/constants');
 const errorHandler = require('./middlewares/errorHandler');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3001 } = process.env;
 
@@ -19,6 +20,8 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(requestLogger);
 
 app.post(
   '/signup',
@@ -52,6 +55,8 @@ app.use(auth);
 
 app.use(routerUsers);
 app.use(routerCards);
+
+app.use(errorLogger);
 
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Страница не найдена' });
