@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.81.196
+IP 51.250.81.196
 
 Frontend https://mestokd.students.nomoredomainsrocks.ru
 
