@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -8,7 +10,7 @@ const routerUsers = require('./routes/users');
 const routerCards = require('./routes/cards');
 const { login, createUser } = require('./controllers/users');
 
-const { regexLink } = require('./utils/constants');
+const { regexLink, MONGODB_URL } = require('./utils/constants');
 const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
@@ -16,12 +18,26 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      'http://localhost:3001',
+      'https://mestokd.students.nomoredomainsrocks.ru',
+      'http://mestokd.students.nomoredomainsrocks.ru',
+    ],
+  }),
+);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post(
   '/signup',
@@ -47,7 +63,7 @@ app.post(
   login,
 );
 
-mongoose.connect('mongodb://127.0.0.1/mestodb', {
+mongoose.connect(MONGODB_URL, {
   useNewUrlParser: true,
 });
 
