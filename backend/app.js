@@ -16,7 +16,7 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-app.use(cors({ origin: 'https://mestokd.students.nomoredomainsrocks.ru' }));
+app.use(cors({ origin: 'http://mestokd.students.nomoredomainsrocks.ru' }));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
