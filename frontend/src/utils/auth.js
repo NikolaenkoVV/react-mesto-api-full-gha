@@ -1,4 +1,4 @@
-export const BASE_URL = "http://api.mestokd.students.nomoredomainsrocks.ru";
+export const BASE_URL = "https://api.mestokd.students.nomoredomainsrocks.ru";
 
 const checkRequestResponse = (res) => {
   if (res.ok) {

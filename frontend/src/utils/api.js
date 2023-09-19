@@ -87,7 +87,7 @@ class Api {
 }
 
 const api = new Api({
-  serverUrl: "http://api.mestokd.students.nomoredomainsrocks.ru",
+  serverUrl: "https://api.mestokd.students.nomoredomainsrocks.ru",
   headers: {
     // authorization: `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json",
