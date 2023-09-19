@@ -11,7 +11,6 @@
 
 Одностраничный сайт от [**Яндекс.Практикум**](https://practicum.yandex.ru/) с графическим офрмлением, представляющий собой интерактивный сервис со следующими возможностями:
   * редактирование профиля через модальное окно;
-  * валидация;
   * добавление/удаление публикаций;
   * проставление реакций;
   * откррытие фотографии в увеличенном размере.
@@ -50,50 +49,3 @@
 
 Проект выполнен с помощью **HTML**,**СSS** и **JavaScript(ES6)**.
 
-```
-<div class="popup">
-        <form class="popup__container">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input type="text" class="popup__edit-title" />
-          <input type="text" class="popup__edit-description" />
-          <button type="submit" class="popup__submit-button">Сохранить</button>
-          <button type="button" class="popup__close-button">
-            <img
-              src="./image/close-icon.svg"
-              alt="Крестик"
-              class="popup__button-icon"
-            />
-          </button>
-        </form>
-        <div class="popup__overlay"></div>
-      </div>
-```
-```
-import UserInfo from '../components/UserInfo.js';
-
-const userInfo = new UserInfo({ // Создаем экземпляр класса UserInfo с соответствующими селекторами из HTML
-  userNameSelector: '.profile__name',
-  userDescriptionSelector: '.profile__description',
-});
-
-const createNewPlace = (data) => { // Создаем функцию для колбека в экземплярах Section и PopupWithForm (для создания карточки)
-  const place = new Card(data, '#placeTemplate', {
-    handlePlaceClick: () => {
-      popupImage.open(data);
-    },
-  });
-
-  return place.createPlace();
-};
-
-const placeList = new Section( // Создаем экземпляр класса Section
-  {
-    items: initialCards,
-    renderer: (data) => {
-      placeList.addItem(createNewPlace(data));
-    },
-  },
-  '.place-gallery'
-);
-
-```
