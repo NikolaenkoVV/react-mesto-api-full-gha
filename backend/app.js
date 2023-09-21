@@ -13,6 +13,7 @@ const { login, createUser } = require('./controllers/users');
 const { regexLink, MONGODB_URL } = require('./utils/constants');
 const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const NotFoundError = require("./errors/not-found-error");
 
 const { PORT = 3000 } = process.env;
 
@@ -47,7 +48,7 @@ app.post(
       about: Joi.string().min(2).max(30),
       avatar: Joi.string().regex(regexLink),
       email: Joi.string().required().email(),
-      password: Joi.string().required().min(8),
+      password: Joi.string().required(),
     }),
   }),
   createUser,
@@ -57,7 +58,7 @@ app.post(
   celebrate({
     body: Joi.object().keys({
       email: Joi.string().required().email(),
-      password: Joi.string().required().min(8),
+      password: Joi.string().required(),
     }),
   }),
   login,
@@ -72,11 +73,13 @@ app.use(auth);
 app.use(routerUsers);
 app.use(routerCards);
 
+app.use('*', (req, res, next) => {
+  return next(new NotFoundError('Страница не найдена'));
+});
+
 app.use(errorLogger);
 
-app.use('*', (req, res) => {
-  res.status(404).json({ message: 'Страница не найдена' });
-});
+
 app.use(errors());
 app.use(errorHandler);
 
